@@ -1,7 +1,7 @@
 const { spawn } = require('child_process');
 const { resolve, join } = require('path');
 
-const isWin32 = process.platform == 'win32';
+const isWin32 = process.platform === 'win32';
 const executable = resolve('node_modules', '.bin', 'tsc');
 
 async function tscExecutor(options, context) {

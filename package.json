@@ -1,20 +1,88 @@
 {
-  "name": "@webpro/nx-tsc",
-  "version": "0.0.1",
+  "name": "@trystan2k/nx-tsc",
+  "version": "1.0.0",
   "description": "Nx executor to type-check project source files using tsc --noEmit",
-  "main": "./index.js",
-  "executors": "./executor.json",
   "keywords": [
     "nx",
     "executor",
     "tsc"
   ],
-  "author": {
-    "email": "lars@webpro.nl",
-    "name": "Lars Kappert"
+  "homepage": "https://github.com/trystan2k/nx-tsc#readme",
+  "bugs": {
+    "url": "https://github.com/trystan2k/nx-tsc/issues"
   },
+  "repository": "github:trystan2k/nx-tsc",
   "license": "MIT",
+  "author": {
+    "name": "Thiago Mendonca",
+    "email": "trystan2k@gmail.com"
+  },
+  "main": "./index.js",
+  "scripts": {
+    "clean": "rm -rf node_modules",
+    "cz": "git-cz",
+    "lint": "eslint . --fix",
+    "prepare": "husky",
+    "push": "git push && git push --tags",
+    "release": "standard-version",
+    "release:as": "standard-version --release-as"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ],
+    "rules": {
+      "header-max-length": [
+        2,
+        "always",
+        100
+      ]
+    }
+  },
+  "lint-staged": {
+    "*.json": [
+      "npm run lint"
+    ],
+    "*.js": [
+      "npm run lint"
+    ],
+    "package.json": [
+      "sort-package-json"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/cz-commitlint"
+    }
+  },
+  "prettier": {
+    "overrides": [
+      {
+        "files": "*.json",
+        "options": {
+          "parser": "json-stringify"
+        }
+      }
+    ]
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "@commitlint/cz-commitlint": "^19.2.0",
+    "@eslint/js": "^9.3.0",
+    "eslint": "^9.3.0",
+    "eslint-plugin-json": "^3.1.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "prettier": "^3.2.5",
+    "sort-package-json": "^2.10.0",
+    "standard-version": "^9.5.0"
+  },
   "publishConfig": {
     "access": "public"
+  },
+  "executors": "./executor.json",
+  "standard-version": {
+    "releaseCommitMessageFormat": "chore: release {{currentTag}}"
   }
 }
